@@ -1,7 +1,12 @@
 const http = require('http')
 const express = require('express')
 const app = express()
+const cors = require('cors')
+const phonebook = require('./phonebook.js')
 app.use(express.json())
+app.use(express.static('dist'))
+app.use(cors())
+app.use('/api', require('./phonebook.js'))
 
 let notes = [
     {  
@@ -20,34 +25,29 @@ let notes = [
         importance: true
     }
 ]
-
-
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
-
 app.get('/api/notes', (req, res) => {
     res.json(notes)
 })
-
 app.get('/api/notes/:id', (req, res) => {
     const id = Number(req.params.id)
     const note = notes.find(n => n.id === id)
 
     if (note) {
         res.json(note)
+        console.log(note)
       } else {
         res.status(404).end()
       }
 })
-
 app.delete('/api/notes/:id', (req, res) => {
     const id = Number(req.params.id)
     notes = notes.filter(n => n.id !== id)
 
     res.status(204).end()
 })
-
 const generateId = (notes) => {
     const maxId = notes.length > 0
     ? Math.max(...notes.map(n => n.id))
@@ -55,7 +55,6 @@ const generateId = (notes) => {
 
     return maxId + 1
 }
-
 app.post('/api/notes', (req, res) => {
     const body = req.body
 
