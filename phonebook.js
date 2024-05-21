@@ -67,15 +67,15 @@ pbRoutes.post('/persons', (req, res) => {
         })
     }
 
-    const note = {
-        content: body.content,
-        id: generateId(notes),
-        importance: Boolean(body.importance) || false
+    const person = {
+        name: body.name,
+        id: body.id,
+        number: body.number
     }
 
-    notes = notes.concat(note)
-    console.log(note)
-    res.json(note)
+    persons = persons.concat(person)
+    console.log(person)
+    res.json(person)
   })
 
 module.exports = exports = pbRoutes
