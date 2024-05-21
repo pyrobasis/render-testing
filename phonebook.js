@@ -61,7 +61,7 @@ const generateId = (notes) => {
 pbRoutes.post('/persons', (req, res) => {
     const body = req.body
 
-    if(!body.content) {
+    if(!body.name) {
         return res.status(400).json({
             error: "content missing"
         })
