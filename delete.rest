@@ -9,3 +9,13 @@ content-type: application/json
     "content": "sample",
     "importance": true
 }
+
+###
+
+POST http://localhost:3001/api/persons HTTP/1.1
+content-type: application/json
+
+{
+    "name": "test name",
+    "number": "2094028400"
+}
