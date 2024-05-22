@@ -33,3 +33,6 @@ content-type: application/json
     "content" : "GET and POST are the most important methods of HTTP protocol",
     "importance" : true
 }
+
+###
+GET http://localhost:3001/api/persons/664db281c9d91a0580f27670
