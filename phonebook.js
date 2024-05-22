@@ -15,10 +15,12 @@ pbRoutes.get('/persons/:id', (req, res) => {
 })
 
 pbRoutes.delete('/persons/:id', (req, res) => {
-    Person.findOneAndDelete({
-        _id : req.params.id
-    }).then(p => {
+    Person.findByIdAndDelete(req.params.id)
+    .then(p => {
         res.status(204).end()
+    })
+    .catch(e => {
+        next(e)
     })
 })
 pbRoutes.post('/persons', (req, res) => {

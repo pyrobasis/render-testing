@@ -19,3 +19,17 @@ content-type: application/json
     "name": "test name",
     "number": "2094028400"
 }
+
+###
+
+DELETE http://localhost:3001/api/persons/664da184d508ce005ad493c3 HTTP/1.1
+
+###
+
+PUT http://localhost:3001/api/notes/664c6b407de8908b6e10a578 HTTP/1.1
+content-type: application/json
+
+{
+    "content" : "GET and POST are the most important methods of HTTP protocol",
+    "importance" : true
+}
