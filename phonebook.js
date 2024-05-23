@@ -53,16 +53,18 @@ pbRoutes.post('/persons', (req, res, next) => {
 
   pbRoutes.put('/persons/:id', (req, res, next) => {
     const body = req.body
-        
+
     const person = {
         name : body.name,
         number : body.number
     }
-    Person.findByIdAndUpdate(req.params.id, person, { new : true })
-    .then(updatedPerson => { res.json(updatedPerson )})
+
+    Person.findByIdAndUpdate(req.params.id, person, { new : true, runValidators: true })
+    .then(updatedPerson => { res.json(updatedPerson)})
     .catch(e => {
         next(e)
     })
+    
   })
 
 module.exports = exports = pbRoutes
